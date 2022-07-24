@@ -1,5 +1,6 @@
-import requests
+from tkinter import *
 from bs4 import BeautifulSoup as BS
+import requests
 
 URL = "https://auto.ru/moskva/cars/hyundai/all/"
 
@@ -16,6 +17,7 @@ def get_content(html):
     items = soup.find_all('div', class_="ListingItem")
 
     cars = []
+
     for item in items:
         cars.append({
             "name": item.find('a', class_="Link ListingItemTitle__link").get_text(),
@@ -30,7 +32,7 @@ def parse():
     params = ""
     i = 2
     while True:
-        html = get_html(URL, params)
+        html = get_html(url.get(), params)
         params = f"page={i}"
         i+=1
 
@@ -40,5 +42,16 @@ def parse():
             print("Error")
             break
 
-parse()
+window = Tk()
+window.title("Car parser")
 
+url = StringVar()
+
+message_entry = Entry(textvariable=url)
+message_entry.place(relx= .5, rely=.1, anchor="nw")
+
+message_button = Button(text="Click Me", command=parse)
+message_button.place(relx=.5, rely=.5, anchor="nw")
+
+
+window.mainloop()
