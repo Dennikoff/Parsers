@@ -48,9 +48,9 @@ window.title("Car parser")
 url = StringVar()
 
 message_entry = Entry(textvariable=url)
-message_entry.place(relx= .5, rely=.1, anchor="nw")
+message_entry.place(relx=.5, rely=.1, anchor="nw")
 
-message_button = Button(text="Click Me", command=parse)
+message_button = Button(text="Parse", command=parse)
 message_button.place(relx=.5, rely=.5, anchor="nw")
 
 
