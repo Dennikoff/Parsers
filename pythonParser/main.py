@@ -44,14 +44,21 @@ def parse():
 
 window = Tk()
 window.title("Car parser")
+frm = Frame(window, pady=10,padx=10)
+frm.grid()
+window.geometry("600x400")
+
+Label(frm, text="Hello World!").grid(column=0, row=0)
 
 url = StringVar()
 
 message_entry = Entry(textvariable=url)
-message_entry.place(relx=.5, rely=.1, anchor="nw")
+message_entry.place(relx=.3, rely=.1, anchor="nw")
 
 message_button = Button(text="Parse", command=parse)
 message_button.place(relx=.5, rely=.5, anchor="nw")
+
+
 
 
 window.mainloop()
