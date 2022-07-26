@@ -15,13 +15,23 @@ def take_content(url):
     content = parse(url)
 
 
+def get_image(name):
+    image = Image.open(f"images/{name}")
+    image = image.resize((50, 50), Image.ANTIALIAS)
+    image = ImageTk.PhotoImage(image)
+    return image
+
+
 def window_init():
     window = tk.Tk()
     window.title("Car parser")
     window.geometry("600x400")
+    window.configure(bg="white")
+    image = get_image("lada.png")
+    button_lada = tk.Button(window, image=image)
+    button_lada.grid(column=0, row=0)
 
-    img = Image.open("lada.png")
+    window.grid_columnconfigure(0, minsize=70)
+    window.grid_rowconfigure(0, minsize=70)
 
-    lada_image = ImageTk.PhotoImage(file=img)
-    button_lada = tk.Button(window,)
-    button_lada.grid(column=0, row=1)
+    window.mainloop()
