@@ -1,20 +1,20 @@
 from bs4 import BeautifulSoup as BS
-# from html import get_html
+from app.internal.parser.html import get_html
 
 
 def parse(url):
     params = ""
     i = 2
-    # while True:
-    #     html = get_html(url.get(), params)
-    #     params = f"page={i}"
-    #     i += 1
-    #
-    #     if html.status_code == 200:
-    #         get_content(html.text)
-    #     else:
-    #         print("Error")
-    #         break
+    while True:
+        html = get_html(url.get(), params)
+        params = f"page={i}"
+        i += 1
+
+        if html.status_code == 200:
+            get_content(html.text)
+        else:
+            print("Error")
+            break
 
 
 def get_content(html):
