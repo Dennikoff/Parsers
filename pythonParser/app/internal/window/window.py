@@ -10,13 +10,20 @@ NISSAN = "https://auto.ru/moskva/cars/nissan/all/"
 SKODA = "https://auto.ru/moskva/cars/skoda/all/"
 TOYOTA = "https://auto.ru/moskva/cars/toyota/all/"
 
+content = []
+
+
 
 def take_content(url):
     content = parse(url)
 
 
-    def button_clicked(url):
-        parse(url)
+def button_clicked(url):
+    global content
+    content = parse(url)
+    for page in content:
+        for item in page:
+            print(item)
 
 
 def get_image(name):
@@ -54,6 +61,6 @@ def window_init():
     window.grid_columnconfigure(5, minsize=80)
     window.grid_columnconfigure(6, minsize=80)
     window.grid_columnconfigure(7, minsize=80)
-    window.grid_rowconfigure(0, minsize=100)
+    window.grid_rowconfigure(0, minsize=40)
 
     window.mainloop()
