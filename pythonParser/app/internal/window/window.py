@@ -23,10 +23,10 @@ def get_image(name):
     return img
 
 
-def create_button(name):
+def create_button(name, col, row):
     global window
-    button = tk.Button(window, text=name)
-    button.grid(column=0, row=0)
+    button = tk.Button(window, text=name, background='white')
+    button.grid(column=col, row=row)
 
 
 def window_init():
@@ -35,7 +35,14 @@ def window_init():
     window.geometry("600x400")
     window.configure(bg="white")
 
-    button_lada = create_button("lada")
+    button_lada = create_button("lada", 0, 1)
+    button_bmw = create_button("bmw", 1, 1)
+    button_hyundai = create_button("bmw", 2, 1)
+    button_mercedes = create_button("bmw", 3, 1)
+    button_nissan = create_button("bmw", 4, 1)
+    button_skoda = create_button("bmw", 5, 1)
+    button_toyota = create_button("bmw", 6, 1)
+
 
     window.grid_columnconfigure(0, minsize=70)
     window.grid_rowconfigure(0, minsize=70)
