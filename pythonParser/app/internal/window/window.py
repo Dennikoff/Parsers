@@ -11,7 +11,7 @@ NISSAN = "https://auto.ru/moskva/cars/nissan/all/"
 SKODA = "https://auto.ru/moskva/cars/skoda/all/"
 TOYOTA = "https://auto.ru/moskva/cars/toyota/all/"
 
-content = []
+content = None
 
 
 
@@ -64,6 +64,14 @@ def window_init():
     window.grid_rowconfigure(0, minsize=20)
 
     table = ttk.Treeview(window)
+
+    table['columns'] = [0, 1]
+
+    global content
+
+    if content != None:
+        for row in content:
+            table.insert('', tk.END, values=row)
 
 
     window.mainloop()
