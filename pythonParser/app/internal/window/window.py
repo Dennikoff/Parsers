@@ -19,12 +19,15 @@ def take_content(url):
     content = parse(url)
 
 
-def button_clicked(url):
+def button_clicked(url, table):
     global content
     content = parse(url)
     for page in content:
         for item in page:
             print(item)
+
+    for row in content:
+        table.insert('', tk.END, values=row)
 
 
 def get_image(name):
@@ -34,9 +37,9 @@ def get_image(name):
     return img
 
 
-def create_button(window, name, col, row):
+def create_button(window, name, col, row, table):
     url = f"https://auto.ru/moskva/cars/{name}/all/"
-    button = tk.Button(window, text=name, command=lambda: button_clicked(url))
+    button = tk.Button(window, text=name, command=lambda: button_clicked(url, table))
     button.grid(column=col, row=row, sticky='wesn')
 
 
@@ -45,13 +48,16 @@ def window_init():
     window.title("Car parser")
     window.geometry("580x400")
 
-    button_vaz = create_button(window, "vaz", 0, 1)
-    button_bmw = create_button(window, "bmw", 1, 1)
-    button_hyundai = create_button(window, "hyundai", 2, 1)
-    button_mercedes = create_button(window, "mercedes", 3, 1)
-    button_nissan = create_button(window, "nissan", 4, 1)
-    button_skoda = create_button(window, "skoda", 5, 1)
-    button_toyota = create_button(window, "toyota", 6, 1)
+    table = ttk.Treeview(window)
+    table['columns'] = [0, 1]
+
+    button_vaz = create_button(window, "vaz", 0, 1, table)
+    button_bmw = create_button(window, "bmw", 1, 1, table)
+    button_hyundai = create_button(window, "hyundai", 2, 1, table)
+    button_mercedes = create_button(window, "mercedes", 3, 1, table)
+    button_nissan = create_button(window, "nissan", 4, 1, table)
+    button_skoda = create_button(window, "skoda", 5, 1, table)
+    button_toyota = create_button(window, "toyota", 6, 1, table)
 
 
     window.grid_columnconfigure(0, minsize=80)
@@ -63,15 +69,7 @@ def window_init():
     window.grid_columnconfigure(6, minsize=80)
     window.grid_rowconfigure(0, minsize=20)
 
-    table = ttk.Treeview(window)
 
-    table['columns'] = [0, 1]
-
-    global content
-
-    if content != None:
-        for row in content:
-            table.insert('', tk.END, values=row)
 
 
     window.mainloop()
