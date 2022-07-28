@@ -42,7 +42,7 @@ def create_button(window, name, col, row):
 def window_init():
     window = tk.Tk()
     window.title("Car parser")
-    window.geometry("600x400")
+    window.geometry("580x400")
 
     button_vaz = create_button(window, "vaz", 0, 1)
     button_bmw = create_button(window, "bmw", 1, 1)
@@ -60,7 +60,6 @@ def window_init():
     window.grid_columnconfigure(4, minsize=80)
     window.grid_columnconfigure(5, minsize=80)
     window.grid_columnconfigure(6, minsize=80)
-    window.grid_columnconfigure(7, minsize=80)
     window.grid_rowconfigure(0, minsize=40)
 
     window.mainloop()
