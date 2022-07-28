@@ -60,6 +60,6 @@ def window_init():
     window.grid_columnconfigure(4, minsize=80)
     window.grid_columnconfigure(5, minsize=80)
     window.grid_columnconfigure(6, minsize=80)
-    window.grid_rowconfigure(0, minsize=40)
+    window.grid_rowconfigure(0, minsize=20)
 
     window.mainloop()
