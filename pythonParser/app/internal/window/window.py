@@ -1,6 +1,7 @@
 import tkinter as tk
 from app.internal.parser.parser import parse
 from PIL import ImageTk, Image
+from tkinter import ttk
 
 LADA = "https://auto.ru/moskva/cars/vaz/all/"
 BMW = "https://auto.ru/moskva/cars/bmw/all/"
@@ -61,5 +62,8 @@ def window_init():
     window.grid_columnconfigure(5, minsize=80)
     window.grid_columnconfigure(6, minsize=80)
     window.grid_rowconfigure(0, minsize=20)
+
+    table = ttk.Treeview(window)
+
 
     window.mainloop()
