@@ -14,7 +14,6 @@ TOYOTA = "https://auto.ru/moskva/cars/toyota/all/"
 content = None
 
 
-
 def take_content(url):
     content = parse(url)
 
@@ -26,8 +25,14 @@ def button_clicked(url, table):
         for item in page:
             print(item)
 
-    for row in content:
-        table.insert('', tk.END, values=row)
+    for page in content:
+        for item in page:
+            values = [item['name'], item['price']]
+            table.insert('', tk.END, values=values)
+
+    table['columns'] = ['name', 'price']
+
+    table.grid(column=1, row=2, rowspan=4)
 
 
 def get_image(name):
@@ -41,6 +46,7 @@ def create_button(window, name, col, row, table):
     url = f"https://auto.ru/moskva/cars/{name}/all/"
     button = tk.Button(window, text=name, command=lambda: button_clicked(url, table))
     button.grid(column=col, row=row, sticky='wesn')
+    return button
 
 
 def window_init():
@@ -48,8 +54,12 @@ def window_init():
     window.title("Car parser")
     window.geometry("580x400")
 
-    table = ttk.Treeview(window)
-    table['columns'] = [0, 1]
+    table = ttk.Treeview(window, show='headings')
+    table['columns'] = ['name', 'price']
+
+    for header in ['name', 'price']:
+        table.heading(header, text=header, anchor='center')
+        table.column(header, anchor='center')
 
     button_vaz = create_button(window, "vaz", 0, 1, table)
     button_bmw = create_button(window, "bmw", 1, 1, table)
@@ -59,7 +69,6 @@ def window_init():
     button_skoda = create_button(window, "skoda", 5, 1, table)
     button_toyota = create_button(window, "toyota", 6, 1, table)
 
-
     window.grid_columnconfigure(0, minsize=80)
     window.grid_columnconfigure(1, minsize=80)
     window.grid_columnconfigure(2, minsize=80)
@@ -68,8 +77,5 @@ def window_init():
     window.grid_columnconfigure(5, minsize=80)
     window.grid_columnconfigure(6, minsize=80)
     window.grid_rowconfigure(0, minsize=20)
-
-
-
 
     window.mainloop()

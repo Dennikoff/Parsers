@@ -12,7 +12,7 @@ def parse(url):
         i += 1
 
         if html.status_code == 200:
-            if i <= 7:
+            if i <= 3:
                 temp = get_content(html.text)
                 content.append(temp)
             else:
@@ -35,4 +35,7 @@ def get_content(html):
             "name": item.find('a', class_="Link ListingItemTitle__link").get_text(),
             "price": item.find('div', class_="ListingItemPrice__content").get_text().replace("\xa0", " "),
         })
+    for car in cars:
+        for key, value in car.items():
+            print(key, value)
     return cars
